@@ -22,7 +22,7 @@ function Circle(x, y, dx, dy, radius) {
     // Circle properties
     this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
     this.radius = radius;
-    this.maxRadius = 40;
+    this.maxRadius = 30;
     this.minRadius = 1;
 
     // Starting positions
@@ -62,10 +62,10 @@ function Circle(x, y, dx, dy, radius) {
             mouse.y - this.y > -50
         ) {
             if (this.radius < this.maxRadius) {
-                this.radius += 2;
+                this.radius += 3;
             }
         } else if (this.radius > this.minRadius) {
-            this.radius -= 0.33;
+            this.radius -= 0.5;
         }
 
         this.draw();
