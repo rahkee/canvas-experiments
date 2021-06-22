@@ -15,6 +15,11 @@ window.addEventListener('mousemove', (e) => {
     mouse.y = e.y;
 });
 
+window.addEventListener('touchmove', (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+});
+
 // Class Object: Circle
 function Circle(x, y, dx, dy, radius) {
     let colorArray = ['#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93'];
@@ -23,7 +28,7 @@ function Circle(x, y, dx, dy, radius) {
     this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
     this.radius = radius;
     this.maxRadius = 30;
-    this.minRadius = 1;
+    this.minRadius = 2;
 
     // Starting positions
     this.x = x;
