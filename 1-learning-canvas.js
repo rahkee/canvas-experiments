@@ -15,7 +15,7 @@ window.addEventListener('mousemove', (e) => {
     mouse.y = e.y;
 });
 
-window.addEventListener('touchmove', (e) => {
+window.addEventListener('touchstart', (e) => {
     mouse.x = e.x;
     mouse.y = e.y;
 });
@@ -28,7 +28,7 @@ function Circle(x, y, dx, dy, radius) {
     this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
     this.radius = radius;
     this.maxRadius = 30;
-    this.minRadius = 2;
+    this.minRadius = 1;
 
     // Starting positions
     this.x = x;
