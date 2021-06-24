@@ -10,25 +10,30 @@ let mouse = {
     y: undefined,
 };
 
+let circleArray = [];
+
 window.addEventListener('mousemove', (e) => {
     mouse.x = e.x;
     mouse.y = e.y;
 });
 
-window.addEventListener('touchmove', (e) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    init();
 });
 
 // Class Object: Circle
 function Circle(x, y, dx, dy, radius) {
-    let colorArray = ['#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93'];
+    // let colorArray = ['#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93'];
+    let colorArray = ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff'];
 
     // Circle properties
     this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
     this.radius = radius;
     this.maxRadius = 30;
-    this.minRadius = 1;
+    this.minRadius = radius;
 
     // Starting positions
     this.x = x;
@@ -77,19 +82,21 @@ function Circle(x, y, dx, dy, radius) {
     };
 }
 
-let circleArray = [];
+function init() {
+    circleArray = [];
 
-for (let i = 0; i < 500; i++) {
-    // Circle properties
-    let radius = Math.random() * 10 + 1;
-    // Starting positions
-    let x = Math.random() * (innerWidth - radius * 2) + radius;
-    let y = Math.random() * (innerHeight - radius * 2) + radius;
-    // Velocities
-    let dx = (Math.random() - 0.5) * 5;
-    let dy = (Math.random() - 0.5) * 5;
+    for (let i = 0; i < 1000; i++) {
+        // Circle properties
+        let radius = Math.random() * 0 + 1;
+        // Starting positions
+        let x = Math.random() * (innerWidth - radius * 2) + radius;
+        let y = Math.random() * (innerHeight - radius * 2) + radius;
+        // Velocities
+        let dx = (Math.random() - 0.5) * 3;
+        let dy = (Math.random() - 0.5) * 3;
 
-    circleArray.push(new Circle(x, y, dx, dy, radius));
+        circleArray.push(new Circle(x, y, dx, dy, radius));
+    }
 }
 
 function animate() {
@@ -102,4 +109,5 @@ function animate() {
     }
 }
 
+init();
 animate();
