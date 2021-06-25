@@ -16,7 +16,7 @@ window.addEventListener('mousemove', (e) => {
     mouse.x = e.x;
     mouse.y = e.y;
 
-    for (let i = 0; i < Math.random() * 5; i++) {
+    for (let i = 0; i < Math.random() * 50; i++) {
         // Circle properties
         let radius = Math.random() * 1;
         let radiusGrow = Math.random();
@@ -53,7 +53,7 @@ function Circle(x, y, dx, dy, radius, radiusGrow) {
         '#d00000',
         '#e85d04',
         '#faa307',
-        '#ffba08',
+        '#fff200',
     ];
 
     // Circle properties
@@ -99,7 +99,7 @@ function Circle(x, y, dx, dy, radius, radiusGrow) {
         } else if (this.radius <= 10 && this.radius > 5) {
             this.color = colorArray[5];
         } else if (this.radius <= 5) {
-            this.color = colorArray[Math.floor(Math.random() * (6 - 3) + 3)];
+            this.color = colorArray[Math.floor(Math.random() * (6 - 4) + 4)];
         }
 
         // Interactivity
