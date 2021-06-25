@@ -16,7 +16,7 @@ window.addEventListener('mousemove', (e) => {
     mouse.x = e.x;
     mouse.y = e.y;
 
-    for (let i = 0; i < Math.random() * 10; i++) {
+    for (let i = 0; i < Math.random() * 5; i++) {
         // Circle properties
         let radius = Math.random() * 1;
         let radiusGrow = Math.random();
@@ -38,23 +38,23 @@ window.addEventListener('resize', () => {
 
 // Class Object: Circle
 function Circle(x, y, dx, dy, radius, radiusGrow) {
-    let colorArray = [
-        '#132a13',
-        '#004b23',
-        '#008000',
-        '#70e000',
-        '#ccff33',
-        '#ffff3f',
-    ];
-
     // let colorArray = [
-    //     '#6d6875',
-    //     '#03071e',
-    //     '#d00000',
-    //     '#e85d04',
-    //     '#faa307',
-    //     '#ffba08',
+    //     '#132a13',
+    //     '#004b23',
+    //     '#008000',
+    //     '#70e000',
+    //     '#ccff33',
+    //     '#ffff3f',
     // ];
+
+    let colorArray = [
+        '#6d6875',
+        '#03071e',
+        '#d00000',
+        '#e85d04',
+        '#faa307',
+        '#ffba08',
+    ];
 
     // Circle properties
     this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
@@ -75,7 +75,7 @@ function Circle(x, y, dx, dy, radius, radiusGrow) {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         c.fillStyle = this.color;
-        c.globalAlpha = 0.1;
+        // c.globalAlpha = 0.5;
         c.fill();
     };
 
@@ -97,7 +97,7 @@ function Circle(x, y, dx, dy, radius, radiusGrow) {
         } else if (this.radius <= 15 && this.radius > 10) {
             this.color = colorArray[4];
         } else if (this.radius <= 10 && this.radius > 5) {
-            this.color = colorArray[Math.floor(Math.random() * (5 - 2) + 2)];
+            this.color = colorArray[5];
         } else if (this.radius <= 5) {
             this.color = colorArray[Math.floor(Math.random() * (6 - 3) + 3)];
         }
