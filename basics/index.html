@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            background-color: transparent;
+            cursor: none;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="learning-canvas">
+        <p>Your browser is wack as hell. It can't even load HTML5 canvas. </p>
+    </canvas>
+
+    <script type="text/javascript">
+
+        let canvas = document.querySelector('canvas');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let c = canvas.getContext('2d');
+
+        // .fillRect(x, y, width, height)
+        c.fillStyle = 'rgba(255, 0, 0, .5)';
+        c.fillRect(10, 10, 10, 10);
+        c.fillStyle = 'rgba(0, 255, 0, .5)';
+        c.fillRect(20, 20, 20, 20);
+        c.fillStyle = 'rgba(0, 0, 255, .5)';
+        c.fillRect(40, 40, 40, 40);
+
+        // Line
+        c.beginPath();
+        c.moveTo(120, 120);
+        c.lineTo(240, 240);
+        c.lineTo(360, 120);
+        c.strokeStyle = '#fa34a3';
+        c.stroke();
+
+        // Arc & Circle
+        // c.arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise ?: boolean);
+        c.beginPath();
+        c.arc(320, 320, 30, 0, Math.PI * 2, false);
+        c.strokeStyle = 'blue';
+        c.stroke();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            background-color: transparent;
+            cursor: none;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="learning-canvas">
+        <p>Your browser is wack as hell. It can't even load HTML5 canvas. </p>
+    </canvas>
+
+    <script type="text/javascript">
+
+        let canvas = document.querySelector('canvas');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let c = canvas.getContext('2d');
+
+        let mouse = {
+            x: undefined,
+            y: undefined,
+        };
+
+        let circleArray = [];
+
+        function party(e) {
+
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            init();
+        });
+
+        // Class Object: Circle
+        function Circle(x, y, dx, dy, radius) {
+            // let colorArray = ['#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93'];
+            let colorArray = ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff'];
+
+            // Circle properties
+            this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
+            this.radius = radius;
+            this.maxRadius = 30;
+            this.minRadius = radius;
+
+            // Starting positions
+            this.x = x;
+            this.y = y;
+            // Velocities
+            this.dx = dx;
+            this.dy = dy;
+
+            // Methods
+            this.draw = function () {
+                c.beginPath();
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                c.fillStyle = this.color;
+                c.fill();
+            };
+
+            this.update = function () {
+                // Collision detection
+                if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
+                    this.dx = -this.dx;
+                }
+
+                if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
+                    this.dy = -this.dy;
+                }
+
+                // Movement
+                this.x += this.dx;
+                this.y += this.dy;
+
+                // Interactivity
+                if (
+                    mouse.x - this.x < 50 &&
+                    mouse.x - this.x > -50 &&
+                    mouse.y - this.y < 50 &&
+                    mouse.y - this.y > -50
+                ) {
+                    if (this.radius < this.maxRadius) {
+                        this.radius += 4;
+                    }
+                } else if (this.radius > this.minRadius) {
+                    this.radius -= 0.5;
+                }
+
+                this.draw();
+            };
+        }
+
+        function init() {
+            circleArray = [];
+
+            for (let i = 0; i < 1000; i++) {
+                // Circle properties
+                let radius = Math.random() * 0 + 1;
+                // Starting positions
+                let x = Math.random() * (innerWidth - radius * 2) + radius;
+                let y = Math.random() * (innerHeight - radius * 2) + radius;
+                // Velocities
+                let dx = (Math.random() - 0.5) * 3;
+                let dy = (Math.random() - 0.5) * 3;
+
+                circleArray.push(new Circle(x, y, dx, dy, radius));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            c.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < circleArray.length; i++) {
+                circleArray[i].update();
+            }
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+
+</html>
