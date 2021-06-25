@@ -72,7 +72,7 @@ function Circle(x, y, dx, dy, radius) {
             mouse.y - this.y > -50
         ) {
             if (this.radius < this.maxRadius) {
-                this.radius += 3;
+                this.radius += 4;
             }
         } else if (this.radius > this.minRadius) {
             this.radius -= 0.5;
