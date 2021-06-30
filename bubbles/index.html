@@ -112,7 +112,7 @@
                     mouse.y - this.y > -50
                 ) {
                     if (this.radius < this.maxRadius) {
-                        this.radius += 4;
+                        this.radius += 5;
                     }
                 } else if (this.radius > this.minRadius) {
                     this.radius -= 0.5;
@@ -125,7 +125,7 @@
         function init() {
             circleArray = [];
 
-            for (let i = 0; i < 1000; i++) {
+            for (let i = 0; i < canvas.width; i++) {
                 // Circle properties
                 let radius = Math.random() * 0 + 1;
                 // Starting positions

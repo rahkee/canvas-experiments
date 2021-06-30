@@ -143,8 +143,8 @@
         function init() {
             ballArray = []; // Reset
 
-            for (let i = 0; i < 100; i++) {
-                let radius = randomIntFromRange(10, 50);
+            for (let i = 0; i < canvas.width / 10; i++) {
+                let radius = randomIntFromRange(5, 50);
                 let color = randomColor(colors);
 
                 let x = randomIntFromRange(radius, canvas.width - radius);
