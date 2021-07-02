@@ -54,7 +54,7 @@
          * @return Object | The altered x and y velocities after the coordinate system has been rotated
          */
         function rotate(velocity, angle) {
-            const rotatedVelocity = {
+            const rotatedVelocities = {
                 x: velocity.x * Math.cos(angle) - velocity.y * Math.sin(angle),
                 y: velocity.y * Math.sin(angle) + velocity.y * Math.cos(angle)
             }
@@ -162,7 +162,7 @@
 
                     // With each loop, compare our position against all other particles
                     if (getDistance(this.x, this.y, particles[i].x, particles[i].y) - radius * 2 < 0) {
-                        // resolveCollision(this, particles[i]);
+                        resolveCollision(this, particles[i]);
                     }
                 }
 
