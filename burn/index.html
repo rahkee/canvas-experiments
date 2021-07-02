@@ -29,6 +29,8 @@
     </canvas>
 
     <script type="text/javascript">
+        // TODO: Destroy really big smoke
+        // TODO: Bug with radiusGrow and colors in the smoke
 
         let canvas = document.querySelector('canvas');
 
@@ -51,7 +53,7 @@
             for (let i = 0; i < Math.random() * 50; i++) {
                 // Circle properties
                 let radius = Math.random() * 1;
-                let radiusGrow = Math.random();
+                let radiusGrow = Math.random() * 1;
                 // Starting positions
                 let x = Math.random() * (mouse.x + 5 - (mouse.x - 5)) + mouse.x - 5;
                 let y = Math.random() * (mouse.y + 5 - (mouse.y - 5)) + mouse.y - 5;
@@ -79,15 +81,6 @@
 
         // Class Object: Circle
         function Circle(x, y, dx, dy, radius, radiusGrow) {
-            // let colorArray = [
-            //     '#132a13',
-            //     '#004b23',
-            //     '#008000',
-            //     '#70e000',
-            //     '#ccff33',
-            //     '#ffff3f',
-            // ];
-
             let colorArray = [
                 '#6d6875',
                 '#03071e',
@@ -125,13 +118,13 @@
                 this.x += this.dx;
                 this.y += this.dy;
 
-                if (radius <= this.maxRadius) {
-                    this.radius += radiusGrow;
+                if (this.radius <= this.maxRadius) {
+                    this.radius += this.radiusGrow;
                 }
 
-                if (this.radius <= 30 && this.radius > 25) {
+                if (this.radius <= this.maxRadius && this.radius > 25) {
                     this.color = colorArray[1];
-                } else if (this.radius <= 24 && this.radius > 20) {
+                } else if (this.radius <= 25 && this.radius > 20) {
                     this.color = colorArray[2];
                 } else if (this.radius <= 20 && this.radius > 15) {
                     this.color = colorArray[3];
@@ -139,23 +132,9 @@
                     this.color = colorArray[4];
                 } else if (this.radius <= 10 && this.radius > 5) {
                     this.color = colorArray[5];
-                } else if (this.radius <= 5) {
+                } else if (this.radius <= 5 && this.radius > this.minRadius) {
                     this.color = colorArray[Math.floor(Math.random() * (6 - 4) + 4)];
                 }
-
-                // Interactivity
-                // if (
-                //     mouse.x - this.x < 50 &&
-                //     mouse.x - this.x > -50 &&
-                //     mouse.y - this.y < 50 &&
-                //     mouse.y - this.y > -50
-                // ) {
-                //     if (this.radius < this.maxRadius) {
-                //         this.radius += 3;
-                //     } else if (this.radius > this.minRadius) {
-                //         this.radius -= 0.5;
-                //     }
-                // }
 
                 this.draw();
             };

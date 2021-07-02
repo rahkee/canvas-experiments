@@ -104,7 +104,7 @@
 
             // Count
             this.count = 0;
-            this.maxCount = Math.random() * (100 - 5) + 5
+            this.maxCount = Math.floor(Math.random() * (25 - 1) + 1);
 
             // Methods
             this.draw = function () {
@@ -120,16 +120,18 @@
                 this.x += this.dx;
                 this.y += this.dy;
 
+                if (this.count >= this.maxCount) {
+                    this.radius = 0;
+                }
+
                 if (radius <= this.maxRadius) {
                     this.radius += radiusGrow;
                 }
 
-                if (this.count >= this.maxCount) {
-                    circleArray.shift();
-                }
+
 
                 if (this.radius > 30) {
-                    this.radius = 0;
+                    this.radius = 1;
                     this.count++;
                 } else if (this.radius <= 30 && this.radius > 25) {
                     this.color = colorArray[1];
