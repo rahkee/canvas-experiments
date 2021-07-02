@@ -174,14 +174,15 @@
                     this.velocity.y = -this.velocity.y;
                 }
 
-                this.x += this.velocity.x;
-                this.y += this.velocity.y;
+                this.x += this.velocity.x * 10;
+                this.y += this.velocity.y * 10;
             }
 
             this.draw = function () {
                 c.beginPath();
                 c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
                 c.strokeStyle = this.color;
+                c.lineWidth = 1;
                 c.stroke();
                 c.closePath();
             }
