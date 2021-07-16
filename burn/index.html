@@ -82,7 +82,7 @@
         // Class Object: Circle
         function Circle(x, y, dx, dy, radius, radiusGrow) {
             let colorArray = [
-                '#000001',
+                '#000000',
                 '#6d6875',
                 '#03071e',
                 '#d00000',
@@ -127,15 +127,14 @@
                 if (this.radius > this.minRadius && this.radius <= 10) {
                     this.color = colorArray[Math.floor(Math.random() * (7 - 5) + 5)];
                 } else if (this.radius > 10 && this.radius <= 16) {
-                    this.color = colorArray[Math.floor(Math.random() * (6 - 5) + 5)];
+                    this.color = colorArray[Math.floor(Math.random() * (6 - 4) + 4)];
                 } else if (this.radius > 16 && this.radius <= 22) {
-                    this.color = colorArray[Math.floor(Math.random() * (5 - 4) + 4)];
+                    this.color = colorArray[Math.floor(Math.random() * (5 - 3) + 3)];
                 } else if (this.radius > 22 && this.radius <= 28) {
                     this.color = colorArray[Math.floor(Math.random() * (4 - 3) + 3)];
                 } else if (this.radius > 28 && this.radius <= 34) {
-                    this.color = colorArray[Math.floor(Math.random() * (3 - 2) + 2)];
-                } else if (this.radius > 34 && this.radius <= 46) {
                     this.color = colorArray[2];
+                    this.radiusGrow += 1;
                 }
 
                 this.draw();

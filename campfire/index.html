@@ -68,6 +68,7 @@
         function Circle(x, y, dx, dy, radius, radiusGrow) {
 
             let colorArray = [
+                '#000000',
                 '#6d6875',
                 '#03071e',
                 '#d00000',
@@ -104,24 +105,22 @@
                 this.x += this.dx;
                 this.y += this.dy;
 
-                if (radius <= this.maxRadius) {
-                    this.radius += radiusGrow;
+                if (this.radius <= this.maxRadius) {
+                    this.radius += this.radiusGrow;
+                    this.radiusGrow += .025;
                 }
 
-                if (this.radius >= 50) {
-                    circleArray.shift();
-                } else if (this.radius <= 30 && this.radius > 25) {
-                    this.color = colorArray[1];
-                } else if (this.radius <= 24 && this.radius > 20) {
-                    this.color = colorArray[2];
-                } else if (this.radius <= 20 && this.radius > 15) {
-                    this.color = colorArray[3];
-                } else if (this.radius <= 15 && this.radius > 10) {
-                    this.color = colorArray[4];
-                } else if (this.radius <= 10 && this.radius > 5) {
-                    this.color = colorArray[5];
-                } else if (this.radius <= 5) {
+                if (this.radius > this.minRadius && this.radius <= 10) {
+                    this.color = colorArray[Math.floor(Math.random() * (7 - 5) + 5)];
+                } else if (this.radius > 10 && this.radius <= 16) {
                     this.color = colorArray[Math.floor(Math.random() * (6 - 4) + 4)];
+                } else if (this.radius > 16 && this.radius <= 22) {
+                    this.color = colorArray[Math.floor(Math.random() * (5 - 3) + 3)];
+                } else if (this.radius > 22 && this.radius <= 28) {
+                    this.color = colorArray[Math.floor(Math.random() * (4 - 3) + 3)];
+                } else if (this.radius > 28 && this.radius <= 34) {
+                    this.color = colorArray[2];
+                    this.radiusGrow += 1;
                 }
 
                 this.draw();
