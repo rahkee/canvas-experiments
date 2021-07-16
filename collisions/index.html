@@ -119,15 +119,15 @@
         const mouse = {
             x: undefined,
             y: undefined
-        }
+        };
 
         const colors = ['#390099', '#9e0059', '#ff0054', '#ff5400', '#ffbd00'];
 
         // Event Listeners
         addEventListener('mousemove', (event) => {
-            mouse.x = event.clientX
-            mouse.y = event.clientY
-        })
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
 
         window.addEventListener('touchmove', (e) => {
             mouse.x = e.touches[0].clientX;
@@ -135,20 +135,21 @@
         });
 
         addEventListener('resize', () => {
-            canvas.width = innerWidth
-            canvas.height = innerHeight
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
 
             init();
         })
 
         // Objects
+
         function Particle(x, y, radius, color) {
             this.x = x;
             this.y = y;
             this.velocity = {
                 x: Math.random() - 0.5,
                 y: Math.random() - 0.5
-            }
+            };
             this.radius = radius;
             this.color = color;
             this.mass = 1;
