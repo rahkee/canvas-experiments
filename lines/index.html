@@ -11,6 +11,7 @@
 
     <style type="text/css">
         body {
+            background-color: black;
             margin: 0;
             overflow: hidden;
         }
@@ -28,7 +29,6 @@
     </canvas>
 
     <script type="text/javascript">
-
         let canvas = document.querySelector('canvas');
 
         canvas.width = window.innerWidth;
@@ -36,33 +36,37 @@
 
         let c = canvas.getContext('2d');
 
-        // Square: filled
-        // .fillRect(x, y, width, height)
-        c.fillStyle = 'rgb(255, 0, 0)';
-        c.fillRect(25, 25, 100, 100);
+        function party() {
 
-        // Square: clear
-        c.clearRect(40, 40, 70, 80);
+            
+        }
 
-        // Square: stroke
-        c.strokeStyle = 'blue';
-        c.strokeRect(50, 50, 100, 50);
+        // Class Object: Circle
+        function Line() {
 
-        // Line
-        c.beginPath();
-        c.moveTo(120, 120);
-        c.lineTo(240, 240);
-        c.lineTo(360, 120);
-        c.strokeStyle = '#fa34a3';
-        c.stroke();
+            // Methods
+            this.draw = function () {
+                // Line
+                c.beginPath();
+                c.moveTo(120, 120);
+                c.lineTo(240, 240);
+                c.lineTo(360, 120);
+                c.strokeStyle = '#fa34a3';
+                c.stroke();
+            };
 
-        // Arc & Circle
-        // c.arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise ?: boolean);
-        c.beginPath();
-        c.arc(320, 320, 30, 0, Math.PI * 2, false);
-        c.strokeStyle = 'blue';
-        c.stroke();
+            this.update = function () {
+                this.draw();
+            };
+        }
 
+        function animate() {
+            requestAnimationFrame(animate);
+
+            c.clearRect(0, 0, innerWidth, innerHeight);
+        }
+
+        animate();
     </script>
 </body>
 
