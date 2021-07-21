@@ -11,7 +11,7 @@
 
     <style type="text/css">
         body {
-            background-color: black;
+            /* background-color: black; */
             margin: 0;
             overflow: hidden;
         }
@@ -36,34 +36,55 @@
 
         let c = canvas.getContext('2d');
 
-        function party() {
-
-            
-        }
-
         // Class Object: Circle
-        function Line() {
+        function Line(x, y, dx, dy) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
 
             // Methods
             this.draw = function () {
-                // Line
                 c.beginPath();
-                c.moveTo(120, 120);
-                c.lineTo(240, 240);
-                c.lineTo(360, 120);
-                c.strokeStyle = '#fa34a3';
+                c.moveTo(this.x, this.y);
+                c.lineTo(this.x + 25, this.y + 25);
+                c.strokeStyle = 'black';
                 c.stroke();
             };
 
             this.update = function () {
+                // Movement
+                this.x += this.dx;
+                this.y += this.dy;
+
                 this.draw();
             };
         }
+
+        let lineArray = [];
+
+        function party() {
+
+            for (let index = 0; index < 1; index++) {
+                lineArray.push(
+                    new Line(
+                        Math.random() * innerWidth,
+                        Math.random() * innerHeight,
+                        2,
+                        2)
+                );
+            }
+        }
+
 
         function animate() {
             requestAnimationFrame(animate);
 
             c.clearRect(0, 0, innerWidth, innerHeight);
+
+            party();
+
+            lineArray.forEach(line => line.update())
         }
 
         animate();
